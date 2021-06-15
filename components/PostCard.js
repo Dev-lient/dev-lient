@@ -24,7 +24,7 @@ import {AuthContext} from '../navigation/AuthProvider';
 import moment from 'moment';
 import firestore from '@react-native-firebase/firestore';
 
-const PostCard = ({item, index, onDelete, onPress}) => {
+const PostCard = ({item, index, onDelete, onPress, navigation}) => {
   const {user, logout} = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [seemore, setseemore] = useState(null);
@@ -122,7 +122,14 @@ const PostCard = ({item, index, onDelete, onPress}) => {
         <InteractionWrapper>
           <TouchableOpacity
             onPress={() => {
-              setseemore(index);
+              // setseemore(index);
+              console.log(item.vision);
+              navigation.navigate('DetailsScreen', {
+                vision: item.vision,
+                require: item.require,
+                email: item.email,
+                post: item.post,
+              });
             }}>
             <Ionicons name="ios-eye-outline" size={25} />
           </TouchableOpacity>

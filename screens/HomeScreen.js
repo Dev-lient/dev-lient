@@ -107,6 +107,10 @@ const HomeScreen = ({navigation}) => {
               postTime,
               likes,
               comments,
+              vision,
+              require,
+              lookinfor,
+              email,
             } = doc.data();
             list.push({
               id: doc.id,
@@ -121,6 +125,10 @@ const HomeScreen = ({navigation}) => {
               liked: false,
               likes,
               comments,
+              vision,
+              require,
+              lookinfor,
+              email,
             });
           });
         });
@@ -269,6 +277,7 @@ const HomeScreen = ({navigation}) => {
             renderItem={({item, index}) => (
               <PostCard
                 item={item}
+                navigation={navigation}
                 index={index}
                 onDelete={handleDelete}
                 renderItem={({item}) => this.renderPost(item)}

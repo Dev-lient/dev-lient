@@ -12,6 +12,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import AddPostScreen from '../screens/AddPostScreen';
 import MessagesScreen from '../screens/MessagesScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import DetailsScreen from '../screens/DetailsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,6 +66,25 @@ const FeedStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
+      name="DetailsScreen"
+      component={DetailsScreen}
+      options={{
+        title: '',
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#2e64e515',
+          shadowColor: '#2e64e515',
+          elevation: 0,
+        },
+        headerBackTitleVisible: false,
+        headerBackImage: () => (
+          <View style={{marginLeft: 15}}>
+            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+          </View>
+        ),
+      }}
+    />
+    <Stack.Screen
       name="HomeProfile"
       component={ProfileScreen}
       options={{
@@ -85,8 +105,6 @@ const FeedStack = ({navigation}) => (
     />
   </Stack.Navigator>
 );
-
-
 
 const ProfileStack = ({navigation}) => (
   <Stack.Navigator>
@@ -130,6 +148,7 @@ const AppStack = () => {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: '#191970',
+        activeBackgroundColor: 'pink',
       }}>
       <Tab.Screen
         name="Home"
@@ -146,7 +165,7 @@ const AppStack = () => {
           ),
         })}
       />
-     
+
       <Tab.Screen
         name="Profile"
         component={ProfileStack}

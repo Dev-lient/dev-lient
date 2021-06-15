@@ -6,18 +6,29 @@ import {
   StyleSheet,
   Alert,
   ActivityIndicator,
+  TextInput,
+  ScrollView,
 } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
 import FormInputt from '../components/FormInputt';
 import Form from '../components/Form';
-import NativeForms from 'native-forms';  
+import NativeForms from 'native-forms';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import { LogBox } from 'react-native';
+import {LogBox} from 'react-native';
+import SelectMultiple from 'react-native-select-multiple';
+const fruits = [
+  'webdeveloper',
+  'appdeveloper',
+  'animator',
+  'photoshop/video editor',
+  'logomaker',
+  'advertiser',
+];
 
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
 
 import {
   InputField,
@@ -28,7 +39,7 @@ import {
   StatusWrapper,
 } from '../styles/AddPost';
 
-import { AuthContext } from '../navigation/AuthProvider';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const AddPostScreen = () => {
   const {user, logout} = useContext(AuthContext);
@@ -37,7 +48,10 @@ const AddPostScreen = () => {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
   const [post, setPost] = useState(null);
-  
+  const [vision, setvision] = useState(null);
+  const [require, setrequire] = useState(null);
+  const [email, setemail] = useState(null);
+  const [lookinfor, setlookinfor] = useState(null);
 
   const takePhotoFromCamera = () => {
     ImagePicker.openCamera({
@@ -69,38 +83,44 @@ const AddPostScreen = () => {
     console.log('Post: ', post);
 
     firestore()
-    .collection('posts','postts')
-    .add({
-      userId: user.uid,
-      post: post,
-      postImg: imageUrl,
-      postTime: firestore.Timestamp.fromDate(new Date()),
-      likes: null,
-      comments: null,
-    })
-    .then(() => {
-      console.log('Post Added!');
-      Alert.alert(
-        'Post published!',
-        'Your post has been published Successfully!',
-      );
-      setPost(null);
-      
-    })
-    .catch((error) => {
-      console.log('Something went wrong with added post to firestore.', error);
-    });
-  }
+      .collection('posts', 'postts')
+      .add({
+        userId: user.uid,
+        post: post,
+        postImg: imageUrl,
+        postTime: firestore.Timestamp.fromDate(new Date()),
+        likes: null,
+        comments: null,
+        vision,
+        require,
+        lookinfor,
+        email,
+      })
+      .then(() => {
+        console.log('Post Added!');
+        Alert.alert(
+          'Post published!',
+          'Your post has been published Successfully!',
+        );
+        setPost(null);
+      })
+      .catch((error) => {
+        console.log(
+          'Something went wrong with added post to firestore.',
+          error,
+        );
+      });
+  };
 
   const uploadImage = async () => {
-    if( image == null ) {
+    if (image == null) {
       return null;
     }
     const uploadUri = image;
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
 
     // Add timestamp to File Name
-    const extension = filename.split('.').pop(); 
+    const extension = filename.split('.').pop();
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
 
@@ -135,38 +155,121 @@ const AddPostScreen = () => {
       //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
       // );
       return url;
-
     } catch (e) {
       console.log(e);
       return null;
     }
-
   };
 
   return (
     <View style={styles.container}>
-      <InputWrapper>
+      <ScrollView>
         {image != null ? <AddImage source={{uri: image}} /> : null}
 
-        
-           <FormInputt
-        
-        placeholderText="FAkt ikdach post madhe jaat aahe"
-        multiline
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={post}
+        <FormInputt
+          placeholderText="FAkt ikdach post madhe jaat aahe"
+          multiline
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={post}
           onChangeText={(content) => setPost(content)}
-          
-      />
-       <Form
         />
-      
-     
-    
-       
-       
+        {/* <Form /> */}
+        <Text
+          style={{
+            marginBottom: 3,
+            marginTop: 35,
+            marginHorizontal: 20,
+            marginVertical: 5,
+
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}>
+          Your Vision
+        </Text>
+        <TextInput
+          placeholder="Enter your vision here"
+          multiline={true}
+          numberOfLines={4}
+          keyboardType="default"
+          style={{
+            borderWidth: 1,
+            borderColor: 'black',
+            padding: 10,
+            marginBottom: 3,
+          }}
+          value={vision}
+          onChangeText={(content) => setvision(content)}
+        />
+        <Text
+          style={{
+            marginBottom: 3,
+            marginHorizontal: 20,
+            marginVertical: 5,
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}>
+          I Am Looking For
+        </Text>
+        <View>
+          <SelectMultiple
+            items={fruits}
+            selectedItems={require}
+            onSelectionsChange={setrequire}
+          />
+        </View>
+        <Text
+          style={{
+            marginBottom: 3,
+            marginTop: 35,
+            marginHorizontal: 20,
+            marginVertical: 5,
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}>
+          My Requiremnts
+        </Text>
+        <TextInput
+          placeholder="Enter Here"
+          multiline={true}
+          numberOfLines={4}
+          keyboardType="default"
+          style={{
+            borderWidth: 1,
+            borderColor: 'black',
+            padding: 10,
+            marginBottom: 3,
+          }}
+          value={lookinfor}
+          onChangeText={(content) => setlookinfor(content)}
+        />
+        <Text
+          style={{
+            marginBottom: 3,
+            marginTop: 35,
+            marginHorizontal: 20,
+            marginVertical: 5,
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}>
+          Contact/Email
+        </Text>
+        <TextInput
+          placeholder="Contacts"
+          multiline={true}
+          numberOfLines={4}
+          keyboardType="default"
+          style={{
+            borderWidth: 1,
+            borderColor: 'black',
+            padding: 10,
+            marginBottom: 3,
+          }}
+          value={email}
+          onChangeText={(content) => setemail(content)}
+        />
+
         {uploading ? (
           <StatusWrapper>
             <Text>{transferred} % Completed!</Text>
@@ -177,7 +280,7 @@ const AddPostScreen = () => {
             <SubmitBtnText>Post</SubmitBtnText>
           </SubmitBtn>
         )}
-      </InputWrapper>
+      </ScrollView>
       <ActionButton buttonColor="#483d8b">
         <ActionButton.Item
           buttonColor="#9b59b6"
@@ -200,9 +303,9 @@ export default AddPostScreen;
 
 const styles = StyleSheet.create({
   container: {
-   marginHorizontal: 20, 
-   marginVertical: 5,
-   flex:1
+    marginHorizontal: 20,
+    marginVertical: 5,
+    flex: 1,
   },
   actionButtonIcon: {
     fontSize: 20,
