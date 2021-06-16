@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
 
-export default function DetailsScreen({navigation, route}) {
+export default function DetailsScreen({navigation, route,item}) {
   const {vision, require, email, lookinfor} = route.params;
   
   console.log(email);
@@ -41,32 +41,22 @@ export default function DetailsScreen({navigation, route}) {
         }}>
         Looking For:
       </Text>
-      <Text
-       style={{
+     
+        {require.map((item) => (
+          <Text 
+           style={{
           
           marginHorizontal: 20,
           marginVertical: 5,
           fontSize:18,
-
-        }}
-      >{require[0].label} 
-       
-       
-      
-      </Text>
-      <Text
-       style={{
-          
-          marginHorizontal: 20,
-          marginVertical: 5,
-          fontSize:18,
-
-        }}
-      >{require[1].label} 
-       
+          }}
+          >{item.lable}
+          </Text>
+        ))}
        
       
-      </Text>
+      
+      
      
    
          <Text
