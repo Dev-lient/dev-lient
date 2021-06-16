@@ -20,7 +20,7 @@ const Tab = createBottomTabNavigator();
 const FeedStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="DevLient"
+      name="Home"
       component={HomeScreen}
       options={{
         headerTitleAlign: 'center',
@@ -32,13 +32,14 @@ const FeedStack = ({navigation}) => (
         headerStyle: {
           shadowColor: '#fff',
           elevation: 0,
+          backgroundColor: '#c6d7eb',
         },
         headerRight: () => (
           <View style={{marginRight: 10}}>
             <FontAwesome5.Button
               name="plus"
               size={22}
-              backgroundColor="#fff"
+              backgroundColor="#c6d7eb"
               color="#000000"
               onPress={() => navigation.navigate('AddPost')}
             />
@@ -147,8 +148,11 @@ const AppStack = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#191970',
-        activeBackgroundColor: 'pink',
+        activeTintColor: '#D50000',
+        activeBackgroundColor: '#BBDEFB',
+        style:{
+          backgroundColor:'white' 
+          }
       }}>
       <Tab.Screen
         name="Home"
@@ -159,7 +163,7 @@ const AppStack = () => {
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
               name="home-outline"
-              color={'#000000'}
+              color={color}
               size={size}
             />
           ),
@@ -172,7 +176,7 @@ const AppStack = () => {
         options={{
           // tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="person-outline" color={'#000000'} size={size} />
+            <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
       />

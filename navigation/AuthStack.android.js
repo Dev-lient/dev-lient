@@ -58,7 +58,7 @@ const AuthStack = () => {
         options={({navigation}) => ({
           title: '',
           headerStyle: {
-            backgroundColor: '#f9fafd',
+            backgroundColor: '#E3F2FD',
             shadowColor: '#f9fafd',
             elevation: 0,
           },
@@ -67,7 +67,7 @@ const AuthStack = () => {
               <FontAwesome.Button 
                 name="long-arrow-left"
                 size={25}
-                backgroundColor="#f9fafd"
+                backgroundColor="#E3F2FD"
                 color="#333"
                 onPress={() => navigation.navigate('Login')}
               />

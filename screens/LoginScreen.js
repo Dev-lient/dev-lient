@@ -23,10 +23,11 @@ const LoginScreen = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
-        source={require('../assets/logo.png')}
+        source={require('../assets/loggo.png')}
         style={styles.logo}
       />
-      <Text style={styles.text}>Welcome to DevLient</Text>
+       <Text style={styles.texxt}>Find Your Developer</Text>
+      <Text style={styles.text}>Welcome to FYD</Text>
 
       <FormInput
         labelValue={email}
@@ -46,7 +47,7 @@ const LoginScreen = ({navigation}) => {
         secureTextEntry={true}
       />
      <View style={[{width:"100%", margin: 10}]}>
-      <Button color="#000000"
+      <Button color="#2979FF"
           style={[{borderRadius: 5, height: "100%"}]}
         title="Sign In"
         onPress={() => login(email, password)}
@@ -72,10 +73,12 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 50
+    paddingTop: 50,
+    backgroundColor:'#E3F2FD'
   },
   logo: {
     height: 150,
@@ -85,6 +88,12 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'notoserif',
     fontSize: 28,
+    marginBottom: 10,
+    color: '#000000',
+  },
+   texxt: {
+    fontFamily: 'notoserif',
+    fontSize: 15,
     marginBottom: 10,
     color: '#000000',
   },

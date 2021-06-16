@@ -20,12 +20,12 @@ import firestore from '@react-native-firebase/firestore';
 import {LogBox} from 'react-native';
 import SelectMultiple from 'react-native-select-multiple';
 const fruits = [
-  'webdeveloper',
-  'appdeveloper',
-  'animator',
-  'photoshop/video editor',
-  'logomaker',
-  'advertiser',
+  '-> Webdeveloper',
+  '-> Appdeveloper',
+  '-> Animator',
+  '-> Photoshop/video editor',
+  '-> Logomaker',
+  '-> UI/UX Designer',
 ];
 
 LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
@@ -165,9 +165,20 @@ const AddPostScreen = () => {
     <View style={styles.container}>
       <ScrollView>
         {image != null ? <AddImage source={{uri: image}} /> : null}
+          <Text
+        style={{
+          marginBottom: 3,
+          marginTop: 35,
+          marginHorizontal: 20,
+          marginVertical: 5,
 
+          fontWeight: 'bold',
+          textDecorationLine: 'underline',
+        }}>
+        Summary:
+      </Text>
         <FormInputt
-          placeholderText="FAkt ikdach post madhe jaat aahe"
+          placeholderText="Summary"
           multiline
           keyboardType="email-address"
           autoCapitalize="none"
@@ -186,7 +197,7 @@ const AddPostScreen = () => {
             fontWeight: 'bold',
             textDecorationLine: 'underline',
           }}>
-          Your Vision
+          Your Vision:
         </Text>
         <TextInput
           placeholder="Enter your vision here"
@@ -197,7 +208,7 @@ const AddPostScreen = () => {
             borderWidth: 1,
             borderColor: 'black',
             padding: 10,
-            marginBottom: 3,
+            marginBottom: 10,
           }}
           value={vision}
           onChangeText={(content) => setvision(content)}
@@ -210,7 +221,7 @@ const AddPostScreen = () => {
             fontWeight: 'bold',
             textDecorationLine: 'underline',
           }}>
-          I Am Looking For
+          You Are Looking For:
         </Text>
         <View>
           <SelectMultiple
@@ -228,7 +239,7 @@ const AddPostScreen = () => {
             fontWeight: 'bold',
             textDecorationLine: 'underline',
           }}>
-          My Requiremnts
+          Your Requiremnts:
         </Text>
         <TextInput
           placeholder="Enter Here"
@@ -253,7 +264,7 @@ const AddPostScreen = () => {
             fontWeight: 'bold',
             textDecorationLine: 'underline',
           }}>
-          Contact/Email
+          Contact/Email:
         </Text>
         <TextInput
           placeholder="Contacts"
@@ -303,9 +314,10 @@ export default AddPostScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: 5,
     marginVertical: 5,
     flex: 1,
+    backgroundColor:'#fff',
   },
   actionButtonIcon: {
     fontSize: 20,

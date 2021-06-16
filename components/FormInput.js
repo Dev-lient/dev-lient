@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#ccc',
     borderRightWidth: 1,
     width: 50,
+    backgroundColor:'#BBDEFB'
   },
   input: {
     padding: 10,

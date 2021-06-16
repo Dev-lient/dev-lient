@@ -98,29 +98,10 @@ const PostCard = ({item, index, onDelete, onPress, navigation}) => {
       ) : (
         <Divider />
       )}
-      {seemore == index ? (
+    
+       
         <InteractionWrapper>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              borderRadius: 5,
-              padding: 2,
-              width: '100%',
-              backgroundColor: 'transparent',
-            }}>
-            <Text>Show what you want here</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setseemore(null);
-              }}>
-              <Ionicons name="chevron-up-outline" size={25} />
-            </TouchableOpacity>
-          </View>
-        </InteractionWrapper>
-      ) : (
-        <InteractionWrapper>
-          <TouchableOpacity
+          <Interaction
             onPress={() => {
               // setseemore(index);
               console.log(item.vision);
@@ -129,18 +110,19 @@ const PostCard = ({item, index, onDelete, onPress, navigation}) => {
                 require: item.require,
                 email: item.email,
                 post: item.post,
+                lookinfor:item.lookinfor,
               });
             }}>
-            <Ionicons name="ios-eye-outline" size={25} />
-          </TouchableOpacity>
-
-          {/* {user.uid == item.userId ? (
-          <Interaction onPress={() => onDelete(item.id)}>
-            <Ionicons name="md-trash-outline" size={25} />
+            <Ionicons name="ios-eye-outline" color={'blue'} size={25} />
           </Interaction>
-        ) : null} */}
+
+           {user.uid == item.userId ? (
+          <Interaction onPress={() => onDelete(item.id)}>
+            <Ionicons name="md-trash-outline" color={'red'} size={25} />
+          </Interaction>
+        ) : null} 
         </InteractionWrapper>
-      )}
+      
     </Card>
   );
 };

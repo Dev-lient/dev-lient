@@ -33,14 +33,14 @@ export const StatusWrapper = styled.View`
 export const SubmitBtn = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: center;
-    background-color: #2e64e515;
+    background-color: #87ceeb;
     border-radius: 5px;
     padding: 10px 25px;
 `;
 
 export const SubmitBtnText = styled.Text`
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Lato-Bold';
     font-weight: bold;
-    color: #2e64e5;
+    color: #483d8b;
 `;

@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
     marginTop: 1,
     marginBottom: 5,
     width: '100%',
-    height: 100,
-    borderColor: '#0000ff',
+    height: 60,
+    borderColor: '#000000',
     borderRadius: 9,
     borderWidth: 1,
     flexDirection: 'row',
     
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
   },
   iconStyle: {
     padding: 10,

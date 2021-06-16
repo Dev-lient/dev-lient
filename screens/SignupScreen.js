@@ -43,9 +43,9 @@ const SignupScreen = ({navigation}) => {
       />
 
      <View style={[{width:"100%", margin: 10}]}>
-      <Button color="#000000"
+      <Button color="#2979FF"
           style={[{borderRadius: 5, height: "100%"}]}
-        title="Sign In"
+        title="Sign Up"
         onPress={() => register(email, password)}
       />
       </View>
@@ -80,7 +80,7 @@ export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f9fafd',
+    backgroundColor: '#E3F2FD',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

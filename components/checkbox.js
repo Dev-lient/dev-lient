@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import SelectMultiple from 'react-native-select-multiple'
  
-const fruits = ['webdeveloper', 'appdeveloper', 'animator','photoshop/video editor', 'logomaker', 'advertiser', ]
+const fruits = ['+Webdeveloper', '+Appdeveloper', '+Animator','+Photoshop/Video editor', '+Logomaker', '+Advertiser', ]
 // --- OR ---
 // const fruits = [
 //   { label: 'Apples', value: 'appls' },
@@ -29,4 +29,4 @@ class Checkbox extends Component {
     )
   }
 }
-export default Checkbox
+export default Checkbox;
